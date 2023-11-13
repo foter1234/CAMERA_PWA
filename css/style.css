@@ -28,7 +28,7 @@ html, body{
       bottom: 30px;
       left: calc(50% - 100px);
   }
-  #camera--trigger1{
+  #camera--switch{
     width: 200px;
     background-color: black;
     color: white;

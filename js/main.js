@@ -12,21 +12,23 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-
+var camMode="user"
 // configurando as constraintes do video stream
-var constraints = { video: { facingMode: "user" }, audio: false };
+var constraints = { video: { facingMode: camMode }, audio: false };
 // capturando os elementos em tela
 const cameraView = document.querySelector("#camera--view"),
   cameraOutput = document.querySelector("#camera--output"),
   cameraSensor = document.querySelector("#camera--sensor"),
-  cameraTrigger = document.querySelector("#camera--trigger")
+  cameraTrigger = document.querySelector("#camera--trigger"),
+  cameraswitcher = document.querySelector("#camera--switch")
+
 
 //Estabelecendo o acesso a camera e inicializando a visualização
 function cameraStart() {
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then(function (stream) {
-      let track = stream.getTracks[0]
+      let track = stream.getTracks()[0]
       cameraView.srcObject = stream;
     })
     .catch(function (error) {
@@ -42,5 +44,19 @@ cameraTrigger.onclick = function () {
   cameraOutput.src = cameraSensor.toDataURL("image/webp");
   cameraOutput.classList.add("taken");
 };
+
+cameraswitcher.onclick = function () {
+   stopMediaTracks(cameraView.srcObject)
+   camMode = camMode === "user" ? "enviroment" : "user";
+   constraints = {video: {facingMode: camMode}, audio: false}
+   cameraStart();
+   
+}
+
+function stopMediaTracks(stream){
+    stream.getTracks.forEach(track => {
+      track.stop();
+    });
+}
 // carrega imagem de camera quando a janela carregar
 window.addEventListener("load", cameraStart, false);
