@@ -47,7 +47,7 @@ cameraTrigger.onclick = function () {
    
 cameraswitcher.onclick = function () {
    stopMediaTracks(cameraView.srcObject)
-   camMode = camMode === "user" ? "enviroment" : "user";
+   camMode = camMode === "user" ? "environment" : "user";
    constraints = {video: {facingMode: camMode}, audio: false}
    console.log(constraints);
    cameraStart();
@@ -55,9 +55,10 @@ cameraswitcher.onclick = function () {
 }
 
 function stopMediaTracks(stream){
-    stream.getTracks.forEach(track => {
+    stream.getTracks().forEach(track => {
       track.stop();
     });
 }
+
 // carrega imagem de camera quando a janela carregar
 window.addEventListener("load", cameraStart, false);
