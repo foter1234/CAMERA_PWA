@@ -44,13 +44,13 @@ cameraTrigger.onclick = function () {
   cameraOutput.src = cameraSensor.toDataURL("image/webp");
   cameraOutput.classList.add("taken");
 };
-
+   
 cameraswitcher.onclick = function () {
    stopMediaTracks(cameraView.srcObject)
    camMode = camMode === "user" ? "enviroment" : "user";
    constraints = {video: {facingMode: camMode}, audio: false}
    cameraStart();
-   
+
 }
 
 function stopMediaTracks(stream){
