@@ -39,9 +39,10 @@ html, body{
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
-    bottom: 180px;
+    bottom: 105px;
     left: calc(50% - 100px);
 }
+
   .taken{
       height: 100px!important;
       width: 100px!important;
